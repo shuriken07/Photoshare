@@ -1,0 +1,48 @@
+.task-container {
+  max-width: 450px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
+}
+.task-container h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.input-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 8px;
+}
+.input-Btn,
+.delete-btn,
+.edit-btn {
+  padding: 8px 12px 10px;
+  margin: 1px;
+  cursor: pointer;
+  background-color: rgb(248, 189, 80);
+  transition: 0.2s;
+}
+.input-Btn:hover,
+.delete-btn:hover,
+.edit-btn:hover{
+  background-color: orange;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
