@@ -23,7 +23,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${ApiBaseUrl}adduser`, {
+      const response = await fetch(`${ApiBaseUrl}adduser/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

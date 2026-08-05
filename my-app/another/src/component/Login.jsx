@@ -12,7 +12,7 @@ function Login() {
 
     try {
       const response = await fetch(
-        `${ApiBaseUrl}login`,
+        `${ApiBaseUrl}login/`,
         {
           method: "POST",
           headers: {
@@ -28,7 +28,7 @@ function Login() {
       console.log(data.message);
       if (data.status) {
         localStorage.setItem("token", data.token);
-        localStorage.setItem("userId", data.user._id);
+        localStorage.setItem("userId", data.user.id || data.user._id);
         localStorage.setItem("username", data.user.username);
 
         toast.success("Login Successful");

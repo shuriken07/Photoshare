@@ -31,7 +31,7 @@ function Dashboard() {
   }, []);
   const getUser = async () => {
     try {
-      const response = await fetch(`${ApiBaseUrl}getuser/${id}`, {
+      const response = await fetch(`${ApiBaseUrl}getuser/${id}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -48,17 +48,16 @@ function Dashboard() {
   };
   const getMyPosts = async () => {
     try {
-      const response = await fetch(`${ApiBaseUrl}getposts`, {
+      const response = await fetch(`${ApiBaseUrl}getposts/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       const data = await response.json();
       if (data.status) {
-        const myPosts = data.data.filter(
-          (post) => post.userId?._id === id
+        const myPosts = data.posts.filter(
+          (post) => post.user.id === id
         );
-
         setPosts(myPosts);
       }
     } catch (err) {
@@ -89,7 +88,7 @@ function Dashboard() {
       if (profilePhoto) {
         formData.append("profilePhoto", profilePhoto);
       }
-      const response = await fetch(`${ApiBaseUrl}updateuser/${id}`, {
+      const response = await fetch(`${ApiBaseUrl}updateuser/${id}/`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -111,7 +110,7 @@ function Dashboard() {
     }
   }
   const editPost = (post) => {
-    setEditingPost(post._id);
+    setEditingPost(post.id);
     setEditTitle(post.title);
     setEditDescription(post.description);
     setEditImage(null);
@@ -125,7 +124,7 @@ function Dashboard() {
     }
     try {
       const response = await fetch(
-        `${ApiBaseUrl}updatepost/${editingPost}`,
+        `${ApiBaseUrl}updatepost/${editingPost}/`,
         {
           method: "PUT",
           headers: {
@@ -150,7 +149,7 @@ function Dashboard() {
     if (!window.confirm("Delete this post?")) return;
     try {
       const response = await fetch(
-        `${ApiBaseUrl}deletepost/${postId}`,
+        `${ApiBaseUrl}deletepost/${postId}/`,
         {
           method: "DELETE",
           headers: {
@@ -235,7 +234,7 @@ function Dashboard() {
           <p>You haven't uploaded any posts yet.</p>
         ) : (
           posts.map((post) => (
-            <div key={post._id} className="mb-5">
+            <div key={post.id} className="mb-5">
               <img src={`${ImageBaseUrl}${post.image}`} alt={post.title} className="img-fluid rounded"
                 style={{
                   maxWidth: "300px",
@@ -247,10 +246,10 @@ function Dashboard() {
               <button className="btn btn-primary me-2" onClick={() => editPost(post)} >
                 Edit
               </button>
-              <button className="btn btn-danger" onClick={() => deletePost(post._id)}>
+              <button className="btn btn-danger" onClick={() => deletePost(post.id)}>
                 Delete
               </button>
-              {editingPost === post._id && (
+              {editingPost === post.id && (
                 <div className="mt-3">
                   <input className="form-control mb-2" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} />
                   <textarea className="form-control mb-2" value={editDescription} onChange={(e) => setEditDescription(e.target.value)} />

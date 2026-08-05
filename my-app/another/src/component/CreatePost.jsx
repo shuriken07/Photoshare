@@ -19,7 +19,7 @@ function CreatePost() {
         formData.append("description", description);
         formData.append("image", image);
         try {
-            const response = await fetch(`${ApiBaseUrl}addpost`, {
+            const response = await fetch(`${ApiBaseUrl}addpost/`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
