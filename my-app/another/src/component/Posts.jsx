@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ApiBaseUrl, ImageBaseUrl } from "./config";
 import { toast } from "react-toastify";
 import Comments from "./comments";
-import Likes from "./Likes";
+import likes from "./likes";
 import "./Dashboard.css";
 function Posts() {
     const token = localStorage.getItem("token");
