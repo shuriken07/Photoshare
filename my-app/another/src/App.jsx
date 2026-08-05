@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import "./App.css";
+import "./app.css";
 import { ToastContainer } from "react-toastify";
 import Sidebar from "./sidebar/Sidebar";
 import Header from "./sidebar/Header";
