@@ -7,7 +7,10 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin: [
+        "http://localhost:5173",
+        process.env.CLIENT_URL
+    ]
 }));
 app.use("/uploads", express.static("uploads"));
 connectionDB();
